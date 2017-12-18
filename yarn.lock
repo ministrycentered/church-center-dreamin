@@ -1543,7 +1543,7 @@ create-error-class@^3.0.0:
   dependencies:
     capture-stack-trace "^1.0.0"
 
-create-react-class@^15.5.2:
+create-react-class@^15.5.2, create-react-class@^15.6.0:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/create-react-class/-/create-react-class-15.6.2.tgz#cf1ed15f12aad7f14ef5f2dfe05e6c42f91ef02a"
   dependencies:
@@ -4533,6 +4533,27 @@ react-devtools-core@^2.5.0:
     shell-quote "^1.6.1"
     ws "^2.0.3"
 
+react-fetching@^0.0.12:
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/react-fetching/-/react-fetching-0.0.12.tgz#398f660d05d485cc1b4981877efc4480fcf91789"
+  dependencies:
+    react "^15.6.1"
+    react-json-fetch "0.0.14"
+
+react-json-fetch@0.0.14:
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/react-json-fetch/-/react-json-fetch-0.0.14.tgz#db6d6f5d0382a0bbd05fc9cfbf0a5918e01eba7b"
+  dependencies:
+    prop-types "^15.5.10"
+    react "^15.6.1"
+
+react-jsonapi@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/react-jsonapi/-/react-jsonapi-0.0.5.tgz#dfe9ee30bf28d7aa467a4793bb5edbef80baab40"
+  dependencies:
+    prop-types "^15.5.10"
+    react "^15.6.1"
+
 react-native-branch@2.0.0-beta.3:
   version "2.0.0-beta.3"
   resolved "https://registry.yarnpkg.com/react-native-branch/-/react-native-branch-2.0.0-beta.3.tgz#2167af86bbc9f964bd45bd5f37684e5b54965e32"
@@ -4689,6 +4710,16 @@ react@16.0.0:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.0"
+
+react@^15.6.1:
+  version "15.6.2"
+  resolved "https://registry.yarnpkg.com/react/-/react-15.6.2.tgz#dba0434ab439cfe82f108f0f511663908179aa72"
+  dependencies:
+    create-react-class "^15.6.0"
+    fbjs "^0.8.9"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.0"
+    prop-types "^15.5.10"
 
 read-chunk@^2.0.0:
   version "2.1.0"
