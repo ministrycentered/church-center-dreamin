@@ -23,6 +23,7 @@
     "react": "16.0.0",
     "react-fetching": "^0.0.12",
     "react-jsonapi": "^0.0.5",
-    "react-native": "0.50.3"
+    "react-native": "0.50.3",
+    "react-primitives": "^0.4.4"
   }
 }
