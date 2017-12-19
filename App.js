@@ -1,23 +1,139 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  FlatList,
+  TouchableOpacity,
+  Button
+} from "react-native";
+import { TabNavigator, StackNavigator } from "react-navigation";
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
-    );
-  }
-}
+import { CheckInScreen } from "./modules/CheckInScreen";
+import { EventsScreen } from "./modules/EventsScreen";
+import {
+  GiveScreen as GiveHome,
+  GiveDonation,
+  GiveMethod,
+  GiveSummary,
+  GiveComplete
+} from "./modules/GiveScreen";
+import { GroupsScreen } from "./modules/GroupsScreen";
+import { HomeScreen } from "./modules/HomeScreen";
+import { ProfileScreen } from "./modules/ProfileScreen";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+import Ionicons from "react-native-vector-icons/Ionicons";
+
+export default TabNavigator(
+  {
+    Give: {
+      screen: StackNavigator({
+        // GiveHome: {
+        //   screen: GiveHome
+        // },
+        GiveDonation: {
+          screen: GiveDonation
+        },
+        GiveMethod: {
+          screen: GiveMethod
+        },
+        GiveSummary: {
+          screen: GiveSummary
+        },
+        GiveComplete: {
+          screen: GiveComplete
+        }
+      }),
+      navigationOptions: {
+        tabBarLabel: "Give",
+        tabBarIcon: ({ tintColor, focused }) => (
+          <Ionicons
+            name={focused ? "ios-cash" : "ios-cash-outline"}
+            size={26}
+            style={{ color: tintColor }}
+          />
+        )
+      }
+    },
+    CheckIn: {
+      screen: StackNavigator({
+        CheckIn: {
+          screen: CheckInScreen
+        }
+      }),
+      navigationOptions: {
+        tabBarLabel: "Check In",
+        tabBarIcon: ({ tintColor, focused }) => (
+          <Ionicons
+            name={
+              focused ? "ios-checkmark-circle" : "ios-checkmark-circle-outline"
+            }
+            size={26}
+            style={{ color: tintColor }}
+          />
+        )
+      }
+    },
+    Home: {
+      screen: StackNavigator({
+        Home: {
+          screen: HomeScreen
+        },
+        Profile: { screen: ProfileScreen }
+      }),
+      navigationOptions: {
+        tabBarLabel: "Home",
+        tabBarIcon: ({ tintColor, focused }) => (
+          <Ionicons
+            name={focused ? "ios-home" : "ios-home-outline"}
+            size={26}
+            style={{ color: tintColor }}
+          />
+        )
+      }
+    },
+    Groups: {
+      screen: StackNavigator({
+        Groups: {
+          screen: GroupsScreen
+        }
+      }),
+      navigationOptions: {
+        tabBarLabel: "Groups",
+        tabBarIcon: ({ tintColor, focused }) => (
+          <Ionicons
+            name={focused ? "ios-people" : "ios-people-outline"}
+            size={26}
+            style={{ color: tintColor }}
+          />
+        )
+      }
+    },
+    Events: {
+      screen: StackNavigator({
+        Events: {
+          screen: EventsScreen
+        }
+      }),
+      navigationOptions: {
+        tabBarLabel: "Events",
+        tabBarIcon: ({ tintColor, focused }) => (
+          <Ionicons
+            name={focused ? "ios-calendar" : "ios-calendar-outline"}
+            size={26}
+            style={{ color: tintColor }}
+          />
+        )
+      }
+    }
   },
-});
+  {
+    tabBarPosition: "bottom",
+    // animationEnabled: true,
+    tabBarOptions: {
+      activeTintColor: "#e91e63"
+    },
+    initialRouteName: "Give"
+  }
+);
