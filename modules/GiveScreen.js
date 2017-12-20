@@ -6,7 +6,9 @@ import {
   Text,
   Button,
   TextInput,
-  Picker
+  Picker,
+  ScrollView,
+  FlatList
 } from "react-native";
 
 // export class GiveScreen extends React.Component {
@@ -42,6 +44,8 @@ export class GiveDonation extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
 
+    const funds = this.props.screenProps.appState.givingFunds.data;
+
     return (
       <View
         style={{
@@ -54,6 +58,20 @@ export class GiveDonation extends React.Component {
         <Text style={{ fontSize: 40, fontWeight: "bold" }}>Donation</Text>
 
         <Button title="Next" onPress={() => navigate("GiveMethod")} />
+
+        <ScrollView
+          contentContainerStyle={{
+            flex: 1,
+            backgroundColor: "#fff",
+            alignItems: "center",
+            justifyContent: "center"
+          }}
+        >
+          <FlatList
+            data={funds}
+            renderItem={({ item }) => <Text>{item.attributes.name}</Text>}
+          />
+        </ScrollView>
       </View>
     );
   }

@@ -1,5 +1,13 @@
 {
   "presets": ["babel-preset-expo"],
+  "plugins": [
+    [
+      "babel-plugin-idx",
+      {
+        "importName": "./idx"
+      }
+    ]
+  ],
   "env": {
     "development": {
       "plugins": ["transform-react-jsx-source"]

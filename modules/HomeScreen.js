@@ -1,14 +1,16 @@
 import React from "react";
 
-import { StyleSheet, View, Text, Button } from "react-native";
+import { StyleSheet, View, Text, Button, TouchableOpacity } from "react-native";
 
 export class HomeScreen extends React.Component {
-  static navigationOptions = {
-    title: "First Church of Awesome" // TODO: dynamic
-  };
+  // static navigationOptions = {
+  //   // title: "First Church of Awesome"
+  // };
 
   render() {
     const { navigate } = this.props.navigation;
+
+    const org = this.props.screenProps.appState.org;
 
     return (
       <View
@@ -26,12 +28,15 @@ export class HomeScreen extends React.Component {
           today.
         </Text>
 
-        <Button title="Pre-check" onPress={() => navigate("CheckIn", null)} />
-
-        <Button
-          title="My Profile"
-          onPress={() => navigate("Profile", { name: "Michael Chan" })}
-        />
+        <TouchableOpacity
+          style={{ backgroundColor: "#6cc271", borderRadius: 8, width: "80%" }}
+        >
+          <Button
+            color="white"
+            title="Pre-check"
+            onPress={() => navigate("QuickCheckIn", null)}
+          />
+        </TouchableOpacity>
       </View>
     );
   }

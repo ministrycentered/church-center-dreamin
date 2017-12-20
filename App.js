@@ -1,17 +1,9 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  FlatList,
-  TouchableOpacity,
-  Button
-} from "react-native";
+import { StyleSheet, Text, View, Image, FlatList, Button } from "react-native";
 import { TabNavigator, StackNavigator } from "react-navigation";
 
 import { CheckInScreen } from "./modules/CheckInScreen";
-import { EventsScreen } from "./modules/EventsScreen";
+import { EventsScreen, ShowEvent } from "./modules/EventsScreen";
 import {
   GiveScreen as GiveHome,
   GiveDonation,
@@ -25,7 +17,12 @@ import { ProfileScreen } from "./modules/ProfileScreen";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
 
-export default TabNavigator(
+import { TOKEN } from "./modules/SECRETS";
+
+let headers = new Headers();
+headers.append("Authorization", `Basic ${TOKEN}`);
+
+const Navigation = TabNavigator(
   {
     Give: {
       screen: StackNavigator({
@@ -33,7 +30,23 @@ export default TabNavigator(
         //   screen: GiveHome
         // },
         GiveDonation: {
-          screen: GiveDonation
+          screen: GiveDonation,
+          navigationOptions: ({ navigation }) => ({
+            headerLeft: () => (
+              <Ionicons
+                name={focused ? "ios-cash" : "ios-cash-outline"}
+                size={26}
+                style={{ color: tintColor }}
+              />
+            ),
+            headerRight: () => (
+              <Ionicons
+                name={focused ? "ios-cash" : "ios-cash-outline"}
+                size={26}
+                style={{ color: tintColor }}
+              />
+            )
+          })
         },
         GiveMethod: {
           screen: GiveMethod
@@ -76,12 +89,43 @@ export default TabNavigator(
       }
     },
     Home: {
-      screen: StackNavigator({
-        Home: {
-          screen: HomeScreen
+      screen: StackNavigator(
+        {
+          Home: {
+            screen: HomeScreen,
+            navigationOptions: ({ navigation, screenProps }) => ({
+              title: screenProps.appState.org.data.attributes.name,
+              headerLeft: (
+                <Ionicons
+                  name="ios-download"
+                  size={26}
+                  onPress={() => navigation.navigate("Profile")}
+                  style={{ paddingLeft: 24 }}
+                />
+              ),
+              headerRight: (
+                <Ionicons
+                  name="ios-happy"
+                  size={26}
+                  onPress={() => navigation.navigate("Profile")}
+                  style={{ paddingRight: 24 }}
+                />
+              )
+            })
+          },
+          Profile: {
+            screen: ProfileScreen,
+            navigationOptions: ({ navigation }) => ({
+              headerLeft: null,
+              headerRight: (
+                <Button title="Done" onPress={() => navigation.goBack()} />
+              )
+            })
+          },
+          QuickCheckIn: { screen: CheckInScreen }
         },
-        Profile: { screen: ProfileScreen }
-      }),
+        { mode: "modal" }
+      ),
       navigationOptions: {
         tabBarLabel: "Home",
         tabBarIcon: ({ tintColor, focused }) => (
@@ -114,6 +158,9 @@ export default TabNavigator(
       screen: StackNavigator({
         Events: {
           screen: EventsScreen
+        },
+        ShowEvent: {
+          screen: ShowEvent
         }
       }),
       navigationOptions: {
@@ -134,6 +181,54 @@ export default TabNavigator(
     tabBarOptions: {
       activeTintColor: "#e91e63"
     },
-    initialRouteName: "Give"
+    initialRouteName: "Events"
   }
 );
+
+const fetcher = (url, callback) =>
+  fetch(url, {
+    method: "GET",
+    headers: headers
+  })
+    .then(res => res.json())
+    .then(callback);
+
+const PCOAPI = app => resource => cb =>
+  fetcher(`https://api.planningcenteronline.com/${app}/v2/${resource}`, cb);
+
+export default class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      me: null,
+      org: {
+        data: {
+          attributes: { name: "" }
+        }
+      },
+      connectedPeople: [],
+      checkInsEvents: [],
+      givingFunds: [],
+      registrationsEvents: []
+    };
+  }
+
+  componentDidMount() {
+    PCOAPI("people")("me")(me => this.setState({ me }));
+    PCOAPI("people")("")(org => this.setState({ org }));
+    PCOAPI("people")("me/connected_people")(connectedPeople =>
+      this.setState({ connectedPeople })
+    );
+    PCOAPI("check_ins")("events")(checkInsEvents =>
+      this.setState({ checkInsEvents })
+    );
+    PCOAPI("registrations")("events")(registrationsEvents =>
+      this.setState({ registrationsEvents })
+    );
+    PCOAPI("giving")("funds")(givingFunds => this.setState({ givingFunds }));
+  }
+
+  render() {
+    return <Navigation screenProps={{ appState: { ...this.state } }} />;
+  }
+}

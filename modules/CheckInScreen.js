@@ -1,6 +1,13 @@
 import React from "react";
 
-import { StyleSheet, View, Text, Button } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Button,
+  ScrollView,
+  FlatList
+} from "react-native";
 
 export class CheckInScreen extends React.Component {
   static navigationOptions = {
@@ -10,17 +17,22 @@ export class CheckInScreen extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
 
+    const events = this.props.screenProps.appState.checkInsEvents.data;
+
     return (
-      <View
-        style={{
+      <ScrollView
+        contentContainerStyle={{
           flex: 1,
           backgroundColor: "#fff",
           alignItems: "center",
           justifyContent: "center"
         }}
       >
-        <Text style={{ fontSize: 40, fontWeight: "bold" }}>CheckIn</Text>
-      </View>
+        <FlatList
+          data={events}
+          renderItem={({ item }) => <Text>{item.attributes.name}</Text>}
+        />
+      </ScrollView>
     );
   }
 }
