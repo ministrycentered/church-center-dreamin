@@ -29,7 +29,7 @@ export class CheckInScreen extends React.Component {
         }}
       >
         <FlatList
-          data={events}
+          data={events.map(e => ({ key: e.id, ...e }))}
           renderItem={({ item }) => <Text>{item.attributes.name}</Text>}
         />
       </ScrollView>

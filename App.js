@@ -11,13 +11,15 @@ import {
   GiveSummary,
   GiveComplete
 } from "./modules/GiveScreen";
-import { GroupsScreen } from "./modules/GroupsScreen";
+import { GroupsScreen, ShowGroup } from "./modules/GroupsScreen";
 import { HomeScreen } from "./modules/HomeScreen";
 import { ProfileScreen } from "./modules/ProfileScreen";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 import { TOKEN } from "./modules/SECRETS";
+
+import { groups } from "./modules/fakeData";
 
 let headers = new Headers();
 headers.append("Authorization", `Basic ${TOKEN}`);
@@ -30,23 +32,7 @@ const Navigation = TabNavigator(
         //   screen: GiveHome
         // },
         GiveDonation: {
-          screen: GiveDonation,
-          navigationOptions: ({ navigation }) => ({
-            headerLeft: () => (
-              <Ionicons
-                name={focused ? "ios-cash" : "ios-cash-outline"}
-                size={26}
-                style={{ color: tintColor }}
-              />
-            ),
-            headerRight: () => (
-              <Ionicons
-                name={focused ? "ios-cash" : "ios-cash-outline"}
-                size={26}
-                style={{ color: tintColor }}
-              />
-            )
-          })
+          screen: GiveDonation
         },
         GiveMethod: {
           screen: GiveMethod
@@ -139,8 +125,11 @@ const Navigation = TabNavigator(
     },
     Groups: {
       screen: StackNavigator({
-        Groups: {
-          screen: GroupsScreen
+        // Groups: {
+        //   screen: GroupsScreen
+        // },
+        ShowGroup: {
+          screen: ShowGroup
         }
       }),
       navigationOptions: {
@@ -181,7 +170,7 @@ const Navigation = TabNavigator(
     tabBarOptions: {
       activeTintColor: "#e91e63"
     },
-    initialRouteName: "Events"
+    initialRouteName: "Groups"
   }
 );
 
@@ -194,7 +183,10 @@ const fetcher = (url, callback) =>
     .then(callback);
 
 const PCOAPI = app => resource => cb =>
-  fetcher(`https://api.planningcenteronline.com/${app}/v2/${resource}`, cb);
+  fetcher(
+    `https://api-staging.planningcenteronline.com/${app}/v2/${resource}`,
+    cb
+  );
 
 export default class App extends React.Component {
   constructor() {
@@ -206,10 +198,11 @@ export default class App extends React.Component {
           attributes: { name: "" }
         }
       },
-      connectedPeople: [],
-      checkInsEvents: [],
-      givingFunds: [],
-      registrationsEvents: []
+      connectedPeople: { data: [] },
+      checkInsEvents: { data: [] },
+      givingFunds: { data: [] },
+      groups: groups,
+      registrationsEvents: { data: [] }
     };
   }
 
@@ -226,6 +219,22 @@ export default class App extends React.Component {
       this.setState({ registrationsEvents })
     );
     PCOAPI("giving")("funds")(givingFunds => this.setState({ givingFunds }));
+
+    // fetch("https://groups.planningcenteronline.com/api/v1/groups.json", {
+    //   method: "GET",
+    //   headers: headers
+    // })
+    //   .then(function(response) {
+    //     if (!response.ok) {
+    //       throw Error(response.statusText);
+    //     }
+    //     return response;
+    //   })
+    //   .then(res => res.json())
+    //   .then(data => console.log(data))
+    //   .catch(function(error) {
+    //     console.log(error);
+    // });
   }
 
   render() {
