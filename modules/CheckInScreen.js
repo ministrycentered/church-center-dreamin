@@ -12,6 +12,13 @@ import {
 } from "react-native";
 
 export class CheckInScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      active: false
+    };
+  }
+
   static navigationOptions = {
     title: "Check In"
   };
@@ -50,6 +57,35 @@ export class CheckInScreen extends React.Component {
       },
     ]
 
+    var styles = StyleSheet.create({
+      Person: {
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        alignItems: "center",
+        padding: 16,
+        borderBottomWidth: 1,
+        borderBottomColor: "#e5e5e5",
+      },
+      PersonSelected: {
+        backgroundColor: "#fff"
+      },
+      Indicator: {
+        opacity: 0,
+        position: "absolute",
+        backgroundColor: "#6cc271",
+        width: 26,
+        height: 26,
+        borderRadius: 28,
+        alignItems: "center",
+        justifyContent: "center",
+        right: -4,
+        top: -2,
+      },
+      IndicatorSelected: {
+        opacity: 1,
+      }
+    })
+
     return (
 
       <View
@@ -64,37 +100,18 @@ export class CheckInScreen extends React.Component {
           checkInList.map((item, i) => (
             <View
               key={i}
-              style={{
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                alignItems: "center",
-                padding: 16,
-                borderBottomWidth: 1,
-                borderBottomColor: "#e5e5e5",
-                backgroundColor: item.selected && "#fff"
-              }}>
+              style={[styles.Person, (this.state.active && i === 1) && styles.PersonSelected]}>
               <View style={{ position: "relative" }}>
                 <Avatar
                   rounded
                   source={{uri: `${item.avatar}`}}
-                  onPress={() => console.log("Works!")}
+                  onPress={()=> this.setState({active: !this.state.active && i === 1})}
                   activeOpacity={0.7}
                   width={60}
                   height={60}
                 />
-              {item.selected && (
                 <View
-                  style={{
-                    position: "absolute",
-                    backgroundColor: "#6cc271",
-                    width: 26,
-                    height: 26,
-                    borderRadius: 28,
-                    alignItems: "center",
-                    justifyContent: "center",
-                    right: -4,
-                    top: -2
-                  }}>
+                  style={[styles.Indicator, (this.state.active && i === 1) && styles.IndicatorSelected]}>
                   <Icon
                     name='check'
                     type='font-awesome'
@@ -102,7 +119,6 @@ export class CheckInScreen extends React.Component {
                     size={14}
                   />
                 </View>
-              )}
               </View>
 
               <View style={{ flex: 1, paddingLeft: 16 }}>
@@ -134,20 +150,22 @@ export class CheckInScreen extends React.Component {
           ))
         }
 
-        <TouchableOpacity
-          style={{
-            backgroundColor: "#6cc271",
-            borderRadius: 100,
-            paddingTop: 2,
-            paddingRight: 32,
-            paddingBottom: 2,
-            paddingLeft: 32,
-            marginTop: "auto",
-            marginBottom: 32,
-          }}
-          >
-          <Button color="white" title="Pre-check 2 People" onPress={() => {}} />
-        </TouchableOpacity>
+        { this.state.active && (
+          <TouchableOpacity
+            style={{
+              backgroundColor: "#6cc271",
+              borderRadius: 100,
+              paddingTop: 2,
+              paddingRight: 32,
+              paddingBottom: 2,
+              paddingLeft: 32,
+              marginTop: "auto",
+              marginBottom: 32,
+            }}
+            >
+              <Button color="white" title="Pre-check" onPress={() => {}} />
+          </TouchableOpacity>
+        )}
       </View>
     );
   }
