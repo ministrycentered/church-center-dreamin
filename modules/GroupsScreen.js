@@ -119,7 +119,7 @@ export class ShowGroup extends React.Component {
           </View>
           <View style={{ flex: 1 }}>
             <Text style={{ color: "#585756", fontSize: 16, paddingBottom: 4 }}>Christmas Gift Exchange</Text>
-            <View style={{ color: "#585756", flexDirection: "row" }}>
+            <View style={{ flexDirection: "row" }}>
               <Icon
                 name='map-pin'
                 type='feather'
@@ -137,7 +137,7 @@ export class ShowGroup extends React.Component {
           </View>
           <View style={{ flex: 1 }}>
             <Text style={{ color: "#585756", fontSize: 16, paddingBottom: 4 }}>Group Dinner</Text>
-            <View style={{ color: "#585756", flexDirection: "row" }}>
+            <View style={{ flexDirection: "row" }}>
               <Icon
                 name='map-pin'
                 type='feather'
@@ -155,7 +155,7 @@ export class ShowGroup extends React.Component {
           </View>
           <View style={{ flex: 1 }}>
             <Text style={{ color: "#585756", fontSize: 16, paddingBottom: 4 }}>Bible Study</Text>
-            <View style={{ color: "#585756", flexDirection: "row" }}>
+            <View style={{ flexDirection: "row" }}>
               <Icon
                 name='map-pin'
                 type='feather'

@@ -54,21 +54,21 @@ export class GiveDonation extends React.Component {
           flex: 1,
           backgroundColor: "#fff",
           alignItems: "center",
-          justifyContent: "center"
+          justifyContent: "flex-start"
         }}
       >
         <TextInput
           placeholder="$25"
           style={{
-            fontSize: 72,
+            fontSize: 88,
             marginTop: 32,
-            marginBottom: 24,
+            marginBottom: 8,
             textAlign: "center",
             color: "#878685"
           }}
         />
 
-        <ScrollView
+      {/*<ScrollView
           contentContainerStyle={{
             backgroundColor: "#fff",
             alignItems: "center",
@@ -79,7 +79,21 @@ export class GiveDonation extends React.Component {
             data={funds}
             renderItem={({ item }) => <Text style={{ fontSize: 16 }}>{item.attributes.name}</Text>}
           />
-        </ScrollView>
+        </ScrollView>*/}
+
+        <View
+          style={{
+            flexDirection: "row",
+          }}>
+          <Text style={{ color: "#878685", fontSize: 18 }}>General Fund</Text>
+          <Icon
+            name='chevron-small-down'
+            type='entypo'
+            color='#878685'
+            size={24}
+            containerStyle={{ paddingLeft: 8 }}
+            />
+        </View>
 
         <TouchableOpacity
           style={{
@@ -89,6 +103,7 @@ export class GiveDonation extends React.Component {
             paddingRight: 32,
             paddingBottom: 2,
             paddingLeft: 32,
+            marginTop: "auto",
             marginBottom: 32,
           }}
           >
@@ -195,7 +210,7 @@ export class GiveSummary extends React.Component {
           <Text
             style={{
               color: "#878685",
-              fontSize: 64,
+              fontSize: 72,
               fontWeight: "bold",
             }}
           >$55
@@ -206,7 +221,7 @@ export class GiveSummary extends React.Component {
               fontSize: 16,
               paddingBottom: 12
             }}
-          >to General from Visa ...0854
+          >to General Fund from Visa ...0854
           </Text>
         </View>
 

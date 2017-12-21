@@ -36,6 +36,7 @@ export class HomeScreen extends React.Component {
             paddingRight: 32,
             paddingBottom: 2,
             paddingLeft: 32,
+            marginTop: "auto",
             marginBottom: 32,
           }}
           >
