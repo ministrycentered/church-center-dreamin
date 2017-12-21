@@ -35,14 +35,13 @@ const EventItem = props => (
           flexDirection: "row",
           padding: 16,
           alignItems: "center",
-          marginBottom: 16
         }}
       >
         <Text
           style={{
             fontSize: 20,
             fontWeight: "600",
-            // marginBottom: 16,
+            color: "#585756",
             flex: 1
           }}
         >
@@ -99,7 +98,7 @@ export class ShowEvent extends React.Component {
     const { navigate } = this.props.navigation;
 
     return (
-      <View>
+      <View style={{ backgroundColor: "#fff", flex: 1 }}>
         <EventItem
           item={{ attributes: this.props.navigation.state.params.attributes }}
           date={
@@ -107,6 +106,27 @@ export class ShowEvent extends React.Component {
           }
           navigate={navigate}
         />
+        <View style={{
+          backgroundColor: "#f3f3f3",
+          flex: 1,
+          alignItems: "center"
+        }}>
+          <Text style={{ padding: 16, fontSize: 14, lineHeight: 20 }}>Alpha is a series of sessions exploring the Christian faith. Each talk looks at a different question around faith and is designed to create conversation. Alpha is run all around the globe, and everyone's welcome. It runs in cafés, churches, universities, homes—you name it. No two Alphas look the same, but generally they have three key things in common: food, a talk and good conversation.</Text>
+          <TouchableOpacity
+            style={{
+              backgroundColor: "#6cc271",
+              borderRadius: 100,
+              paddingTop: 2,
+              paddingRight: 32,
+              paddingBottom: 2,
+              paddingLeft: 32,
+              marginTop: "auto",
+              marginBottom: 32,
+            }}
+            >
+            <Button color="white" title="Register" onPress={() => {}} />
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
