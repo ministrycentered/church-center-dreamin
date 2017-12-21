@@ -29,8 +29,16 @@ export class HomeScreen extends React.Component {
         </Text>
 
         <TouchableOpacity
-          style={{ backgroundColor: "#6cc271", borderRadius: 8, width: "80%" }}
-        >
+          style={{
+            backgroundColor: "#6cc271",
+            borderRadius: 100,
+            paddingTop: 2,
+            paddingRight: 32,
+            paddingBottom: 2,
+            paddingLeft: 32,
+            marginBottom: 32,
+          }}
+          >
           <Button
             color="white"
             title="Pre-check"

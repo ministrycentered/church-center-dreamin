@@ -1,6 +1,7 @@
 import React from "react";
 
 import { StyleSheet, View, Text, Button, FlatList, Image } from "react-native";
+import { Avatar, Icon } from 'react-native-elements';
 
 export class GroupsScreen extends React.Component {
   static navigationOptions = {
@@ -110,8 +111,110 @@ export class ShowGroup extends React.Component {
         <View style={{ padding: 16 }}>
           <Text style={{ fontSize: 16, fontWeight: "600" }}>Upcoming Events</Text>
         </View>
-        <View style={{ padding: 16 }}>
+
+        <View style={{ marginBottom: 16, flexDirection: "row", alignItems: "center", paddingLeft: 16, paddingRight: 16 }}>
+          <View style={{ paddingRight: 16, marginRight: 16, alignItems: "center", borderRightWidth: 1, borderRightColor: "#e1e1e1" }}>
+            <Text style={{ color: "#353535", fontSize: 14 }}>12</Text>
+            <Text style={{ color: "#353535", fontSize: 14 }}>DEC</Text>
+          </View>
+          <View style={{ flex: 1 }}>
+            <Text style={{ color: "#585756", fontSize: 16, paddingBottom: 4 }}>Christmas Gift Exchange</Text>
+            <View style={{ color: "#585756", flexDirection: "row" }}>
+              <Icon
+                name='map-pin'
+                type='feather'
+                color='#878685'
+                size={12}
+              />
+            <Text style={{ color: "#585756", fontSize: 12, paddingLeft: 4 }}>Dan's House</Text>
+            </View>
+          </View>
+        </View>
+        <View style={{ marginBottom: 16, flexDirection: "row", alignItems: "center", paddingLeft: 16, paddingRight: 16 }}>
+          <View style={{ paddingRight: 16, marginRight: 16, alignItems: "center", borderRightWidth: 1, borderRightColor: "#e1e1e1" }}>
+            <Text style={{ color: "#353535", fontSize: 14 }}>2</Text>
+            <Text style={{ color: "#353535", fontSize: 14 }}>JAN</Text>
+          </View>
+          <View style={{ flex: 1 }}>
+            <Text style={{ color: "#585756", fontSize: 16, paddingBottom: 4 }}>Group Dinner</Text>
+            <View style={{ color: "#585756", flexDirection: "row" }}>
+              <Icon
+                name='map-pin'
+                type='feather'
+                color='#878685'
+                size={12}
+              />
+            <Text style={{ color: "#585756", fontSize: 12, paddingLeft: 4 }}>Dan's Home</Text>
+            </View>
+          </View>
+        </View>
+        <View style={{ flexDirection: "row", alignItems: "center", paddingLeft: 16, paddingRight: 16 }}>
+          <View style={{ paddingRight: 16, marginRight: 16, alignItems: "center", borderRightWidth: 1, borderRightColor: "#e1e1e1" }}>
+            <Text style={{ color: "#353535", fontSize: 14 }}>8</Text>
+            <Text style={{ color: "#353535", fontSize: 14 }}>JAN</Text>
+          </View>
+          <View style={{ flex: 1 }}>
+            <Text style={{ color: "#585756", fontSize: 16, paddingBottom: 4 }}>Bible Study</Text>
+            <View style={{ color: "#585756", flexDirection: "row" }}>
+              <Icon
+                name='map-pin'
+                type='feather'
+                color='#878685'
+                size={12}
+              />
+            <Text style={{ color: "#585756", fontSize: 12, paddingLeft: 4 }}>Church Office</Text>
+            </View>
+          </View>
+        </View>
+        <View style={{ marginTop: 16, padding: 16 }}>
           <Text style={{ fontSize: 16, fontWeight: "600" }}>Members</Text>
+        </View>
+        <View style={{ flexDirection: "row", paddingLeft: 16 }}>
+          <Avatar
+            rounded
+            source={{uri: "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg"}}
+            onPress={() => console.log("Works!")}
+            activeOpacity={0.7}
+            width={48}
+            height={48}
+            containerStyle={{ marginRight: 12 }}
+          />
+          <Avatar
+            rounded
+            title="MT"
+            onPress={() => console.log("Works!")}
+            activeOpacity={0.7}
+            width={48}
+            height={48}
+            containerStyle={{marginRight: 12}}
+          />
+          <Avatar
+            rounded
+            source={{uri: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg"}}
+            onPress={() => console.log("Works!")}
+            activeOpacity={0.7}
+            width={48}
+            height={48}
+            containerStyle={{ marginRight: 12 }}
+          />
+          <Avatar
+            rounded
+            source={{uri: "https://s3.amazonaws.com/uifaces/faces/twitter/sillyleo/128.jpg"}}
+            onPress={() => console.log("Works!")}
+            activeOpacity={0.7}
+            width={48}
+            height={48}
+            containerStyle={{ marginRight: 12 }}
+          />
+          <Avatar
+            rounded
+            source={{uri: "https://s3.amazonaws.com/uifaces/faces/twitter/jina/128.jpg"}}
+            onPress={() => console.log("Works!")}
+            activeOpacity={0.7}
+            width={48}
+            height={48}
+            containerStyle={{ marginRight: 12 }}
+          />
         </View>
       </View>
     );

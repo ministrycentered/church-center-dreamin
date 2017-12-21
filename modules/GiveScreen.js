@@ -70,31 +70,29 @@ export class GiveDonation extends React.Component {
 
         <ScrollView
           contentContainerStyle={{
-            flex: 1,
             backgroundColor: "#fff",
             alignItems: "center",
-            justifyContent: "center"
+            justifyContent: "center",
           }}
         >
           <FlatList
             data={funds}
-            renderItem={({ item }) => <Text>{item.attributes.name}</Text>}
+            renderItem={({ item }) => <Text style={{ fontSize: 16 }}>{item.attributes.name}</Text>}
           />
         </ScrollView>
 
         <TouchableOpacity
           style={{
             backgroundColor: "#6cc271",
-            borderRadius: 8,
-            paddingTop: 8,
-            paddingRight: 12,
-            paddingBottom: 8,
-            paddingLeft: 12,
+            borderRadius: 100,
+            paddingTop: 2,
+            paddingRight: 32,
+            paddingBottom: 2,
+            paddingLeft: 32,
             marginBottom: 32,
-            width: "80%"
           }}
           >
-          <Button color="white" title="Next &rarr;" onPress={() => navigate("GiveMethod")} />
+          <Button color="white" title="Continue" onPress={() => navigate("GiveMethod")} />
         </TouchableOpacity>
       </View>
     );
@@ -215,14 +213,13 @@ export class GiveSummary extends React.Component {
         <TouchableOpacity
           style={{
             backgroundColor: "#6cc271",
-            borderRadius: 8,
-            paddingTop: 8,
-            paddingRight: 12,
-            paddingBottom: 8,
-            paddingLeft: 12,
-            marginTop: "auto",
+            borderRadius: 100,
+            paddingTop: 2,
+            paddingRight: 32,
+            paddingBottom: 2,
+            paddingLeft: 32,
             marginBottom: 32,
-            width: "80%"
+            marginTop: "auto",
           }}
           >
           <Button color="white" title="Complete Donation" onPress={() => navigate("GiveComplete")} />
