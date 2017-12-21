@@ -117,7 +117,7 @@ export class ProfileScreen extends React.Component {
                     title={item.title}
                     onPress={() => {}}
                     titleStyle={{ fontSize: 14, color: "#878685" }}
-                    style={{
+                    containerStyle={{
                       borderBottomColor: '#dfdfdf',
                       borderBottomWidth: 0.5
                     }}

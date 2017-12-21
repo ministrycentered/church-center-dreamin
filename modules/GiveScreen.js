@@ -154,7 +154,8 @@ export class GiveMethod extends React.Component {
 
         <List
           containerStyle={{
-            width: "100%"
+            width: "100%",
+            borderTopColor: "#dfdfdf"
           }}>
           {
             list.map((item, i) => (
@@ -162,7 +163,8 @@ export class GiveMethod extends React.Component {
                 key={i}
                 title={item.title}
                 leftIcon={{name: item.icon, color: "#878685"}}
-                style={{ paddingLeft: 32, borderBottomColor: "#000000" }}
+                style={{ paddingLeft: 32 }}
+                containerStyle={{ borderBottomColor: "#dfdfdf" }}
                 onPress={() => navigate("GiveSummary")}
                 titleStyle={{ fontSize: 16, color: "#878685" }}
               />
