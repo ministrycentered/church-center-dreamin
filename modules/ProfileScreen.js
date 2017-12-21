@@ -42,7 +42,7 @@ export class ProfileScreen extends React.Component {
           style={{
             flex: 1,
             flexDirection: "column",
-            backgroundColor: "#f3f3f3",
+            backgroundColor: "#f3f2f2",
             alignItems: "center",
             justifyContent: "center"
           }}

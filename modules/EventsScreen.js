@@ -107,7 +107,7 @@ export class ShowEvent extends React.Component {
           navigate={navigate}
         />
         <View style={{
-          backgroundColor: "#f3f3f3",
+          backgroundColor: "#f3f2f2",
           flex: 1,
           alignItems: "center"
         }}>
