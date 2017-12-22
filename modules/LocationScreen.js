@@ -105,8 +105,10 @@ export class LocationScreen extends React.Component {
                   borderStyle: "solid",
                   borderRadius: 3,
                 }}
+                maxLength={5}
                 keyboardType="numeric"
                 returnKeyType="done"
+                onSubmitEditing={(event) => navigate("LocationList")}
               />
               <Text
                 style={{
