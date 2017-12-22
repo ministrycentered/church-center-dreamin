@@ -170,6 +170,7 @@ export class LocationList extends React.Component {
           alignItems: "center",
           backgroundColor: "#fff",
         }}>
+        <Text>Uh, stuff goes here!</Text>
       </View>
     )
   }
