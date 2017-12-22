@@ -21,6 +21,10 @@ export class LocationScreen extends React.Component {
     title: "Location"
   };
 
+  state = {
+    zip: null,
+  }
+
   render() {
     const { navigate } = this.props.navigation;
 
@@ -108,7 +112,11 @@ export class LocationScreen extends React.Component {
                 maxLength={5}
                 keyboardType="numeric"
                 returnKeyType="done"
-                onSubmitEditing={(event) => navigate("LocationList")}
+                onChangeText={(text) => this.setState({text})}
+                onSubmitEditing={(event) => navigate("LocationList", {
+                                              locationPermission: false,
+                                              zip: this.state.text
+                                            })}
               />
               <Text
                 style={{
@@ -129,7 +137,15 @@ export class LocationScreen extends React.Component {
                     "This app needs your location to search for nearby churches.",
                     [
                       {text: "Don’t Allow"},
-                      {text: "Allow", onPress: () => navigate("LocationList")}
+                      {
+                        text: "Allow",
+                        onPress: () => {
+                          navigate("LocationList", {
+                            locationPermission: true,
+                            zip: null
+                          });
+                        }
+                      }
                     ]
                   )}
                 >
@@ -164,6 +180,7 @@ export class LocationList extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation;
+    const locationPermission = this.props.navigation.state.params.locationPermission
 
     const list = [
       {
@@ -226,9 +243,10 @@ export class LocationList extends React.Component {
           />
           <TextInput
             placeholder="City, State or Zip Code"
-            value="92009"
+            value={ locationPermission ? "Current location" : this.props.navigation.state.params.zip }
             style={{
-              color: "#878685",
+              fontWeight: locationPermission ? "bold" : "normal",
+              color: locationPermission ? "#007aff" : "#878685",
               padding: 8,
               borderWidth: 1,
               borderColor: "#ddd",
