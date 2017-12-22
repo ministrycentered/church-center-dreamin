@@ -223,7 +223,7 @@ export class GiveSummary extends React.Component {
               fontSize: 16,
               paddingBottom: 12
             }}
-          >to General Fund from Visa ...0854
+          >to General Fund from Visa ..0845
           </Text>
         </View>
 
