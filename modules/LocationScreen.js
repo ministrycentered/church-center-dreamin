@@ -13,6 +13,7 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 
 export class LocationScreen extends React.Component {
@@ -121,7 +122,14 @@ export class LocationScreen extends React.Component {
                   style={{
                     flexDirection: "row"
                   }}
-                  onPress={() => navigate("LocationList")}
+                  onPress={() => Alert.alert(
+                    "Allow Church Center to access your location while you are using the app?",
+                    "This app needs your location to search for nearby churches.",
+                    [
+                      {text: "Don’t Allow"},
+                      {text: "Allow", onPress: () => navigate("LocationList")}
+                    ]
+                  )}
                 >
                   <FontAwesome
                     name="location-arrow"
