@@ -228,8 +228,7 @@ export default class App extends React.Component {
       checkInsEvents: { data: [] },
       givingFunds: { data: [] },
       groups: groups,
-      registrationsEvents: { data: [] },
-      locationPermission: false,
+      registrationsEvents: { data: [] }
     };
   }
 
