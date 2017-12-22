@@ -1,6 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, FlatList, Button } from "react-native";
-import { TabNavigator, StackNavigator } from "react-navigation";
+import {
+  TabNavigator,
+  StackNavigator,
+  NavigationActions
+} from "react-navigation";
 
 import { CheckInScreen } from "./modules/CheckInScreen";
 import { EventsScreen, ShowEvent } from "./modules/EventsScreen";
@@ -41,7 +45,24 @@ const Navigation = TabNavigator(
           screen: GiveSummary
         },
         GiveComplete: {
-          screen: GiveComplete
+          screen: GiveComplete,
+          navigationOptions: ({ navigation }) => {
+            return {
+              headerLeft: null,
+              headerRight: (
+                <Button
+                  title="Done"
+                  onPress={() =>
+                    navigation.dispatch(
+                      NavigationActions.back({
+                        key: "GiveDonation"
+                      })
+                    )
+                  }
+                />
+              )
+            };
+          }
         }
       }),
       navigationOptions: {
@@ -83,18 +104,10 @@ const Navigation = TabNavigator(
               title: screenProps.appState.org.data.attributes.name,
               headerLeft: (
                 <Ionicons
-                  name="ios-download"
-                  size={26}
-                  onPress={() => navigation.navigate("Profile")}
-                  style={{ paddingLeft: 24 }}
-                />
-              ),
-              headerRight: (
-                <Ionicons
                   name="ios-happy"
                   size={26}
                   onPress={() => navigation.navigate("Profile")}
-                  style={{ paddingRight: 24 }}
+                  style={{ paddingLeft: 16 }}
                 />
               )
             })
@@ -108,7 +121,15 @@ const Navigation = TabNavigator(
               )
             })
           },
-          QuickCheckIn: { screen: CheckInScreen }
+          QuickCheckIn: {
+            screen: CheckInScreen,
+            navigationOptions: ({ navigation }) => ({
+              headerLeft: null,
+              headerRight: (
+                <Button title="Done" onPress={() => navigation.goBack()} />
+              )
+            })
+          }
         },
         { mode: "modal" }
       ),
@@ -170,7 +191,7 @@ const Navigation = TabNavigator(
     tabBarOptions: {
       activeTintColor: "#e91e63"
     },
-    initialRouteName: "Groups"
+    initialRouteName: "Home"
   }
 );
 

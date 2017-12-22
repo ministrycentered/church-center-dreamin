@@ -44,6 +44,8 @@ export class GiveDonation extends React.Component {
   };
 
   render() {
+
+    console.log(this.props.navigation)
     const { navigate } = this.props.navigation;
 
     const funds = this.props.screenProps.appState.givingFunds.data;
@@ -253,6 +255,8 @@ export class GiveComplete extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation;
+
+    console.log(this.props.navigation)
 
     return (
       <View
