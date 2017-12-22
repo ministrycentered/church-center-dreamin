@@ -12,6 +12,7 @@ import {
   FlatList,
   Keyboard,
   KeyboardAvoidingView,
+  TouchableOpacity,
 } from "react-native";
 
 export class LocationScreen extends React.Component {
@@ -20,6 +21,8 @@ export class LocationScreen extends React.Component {
   };
 
   render() {
+    const { navigate } = this.props.navigation;
+
     return (
       <KeyboardAvoidingView
         behavior="position"
@@ -113,29 +116,53 @@ export class LocationScreen extends React.Component {
                 }}>
                 or
               </Text>
-              <View
-                style={{
-                  flexDirection: "row"
-                }}>
-                <FontAwesome
-                  name="location-arrow"
-                  color="#007aff"
-                  size={16}
+              <View>
+                <TouchableOpacity
                   style={{
-                    backgroundColor: "transparent",
-                    marginRight: 8,
+                    flexDirection: "row"
                   }}
-                />
-                <Text
-                  style={{
-                    color: "#007aff"
-                  }}>
-                  Use current location
-                </Text>
+                  onPress={() => navigate("LocationList")}
+                >
+                  <FontAwesome
+                    name="location-arrow"
+                    color="#007aff"
+                    size={16}
+                    style={{
+                      backgroundColor: "transparent",
+                      marginRight: 8,
+                    }}
+                  />
+                  <Text
+                    style={{
+                      color: "#007aff"
+                    }}>
+                    Use current location
+                  </Text>
+                </TouchableOpacity>
               </View>
             </View>
           </View>
       </KeyboardAvoidingView>
+    )
+  }
+}
+
+export class LocationList extends React.Component {
+  static navigationOptions = {
+    title: "Nearby Churches"
+  };
+
+  render() {
+    const { navigate } = this.props.navigation;
+
+    return (
+      <View
+        style={{
+          flex: 1,
+          alignItems: "center",
+          backgroundColor: "#fff",
+        }}>
+      </View>
     )
   }
 }

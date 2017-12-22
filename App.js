@@ -16,6 +16,7 @@ import { HomeScreen } from "./modules/HomeScreen";
 import { ProfileScreen } from "./modules/ProfileScreen";
 import {
   LocationScreen,
+  LocationList,
 } from "./modules/LocationScreen";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
