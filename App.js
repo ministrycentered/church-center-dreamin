@@ -14,6 +14,9 @@ import {
 import { GroupsScreen, ShowGroup } from "./modules/GroupsScreen";
 import { HomeScreen } from "./modules/HomeScreen";
 import { ProfileScreen } from "./modules/ProfileScreen";
+import {
+  LocationScreen,
+} from "./modules/LocationScreen";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
 
