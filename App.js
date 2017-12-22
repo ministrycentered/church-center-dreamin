@@ -18,6 +18,10 @@ import {
 import { GroupsScreen, ShowGroup } from "./modules/GroupsScreen";
 import { HomeScreen } from "./modules/HomeScreen";
 import { ProfileScreen } from "./modules/ProfileScreen";
+import {
+  LocationScreen,
+  LocationList,
+} from "./modules/LocationScreen";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
 
@@ -30,6 +34,28 @@ headers.append("Authorization", `Basic ${TOKEN}`);
 
 const Navigation = TabNavigator(
   {
+    Location: {
+      screen: StackNavigator({
+        Location: {
+          screen: LocationScreen
+        },
+        LocationList: {
+          screen: LocationList
+        },
+      }),
+      navigationOptions: {
+        tabBarLabel: "Location",
+        tabBarIcon: ({ tintColor, focused }) => (
+          <Ionicons
+            name={
+              focused ? "ios-locate" : "ios-locate-outline"
+            }
+            size={26}
+            style={{ color: tintColor }}
+          />
+        )
+      }
+    },
     Give: {
       screen: StackNavigator({
         // GiveHome: {
