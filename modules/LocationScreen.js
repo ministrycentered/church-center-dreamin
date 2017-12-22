@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, Icon } from 'react-native-elements';
+import { Avatar, Icon, List, ListItem } from 'react-native-elements';
 import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
@@ -165,6 +165,39 @@ export class LocationList extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
 
+    const list = [
+      {
+        title: "C3 Church San Diego North Campus",
+        address: "2716 Gateway Rd",
+        city: "Carlsbad",
+      },
+      {
+        title: "St. Katherine Orthodox Church",
+        address: "2720 Loker Ave W",
+        city: "Carlsbad",
+      },
+      {
+        title: "Holy Cross Episcopal Church",
+        address: "2510 Gateway Rd",
+        city: "Carlsbad",
+      },
+      {
+        title: "Faith Community Church",
+        address: "2700 Rancho Pancho",
+        city: "Carlsbad",
+      },
+      {
+        title: "North Coast Church Carlsbad",
+        address: "6515 Ambrosia Ln",
+        city: "Carlsbad",
+      },
+      {
+        title: "Daybreak Community Church",
+        address: "6515 Ambrosia Ln",
+        city: "Carlsbad",
+      },
+    ]
+
     return (
       <View
         style={{
@@ -172,7 +205,56 @@ export class LocationList extends React.Component {
           alignItems: "center",
           backgroundColor: "#fff",
         }}>
-        <Text>Uh, stuff goes here!</Text>
+        <View
+          style={{
+            padding: 16,
+            paddingBottom: 0,
+            width: "100%",
+          }}>
+          <TextInput
+            placeholder="Name of church"
+            style={{
+              color: "#878685",
+              padding: 8,
+              borderWidth: 1,
+              borderColor: "#ddd",
+              borderStyle: "solid",
+              borderRadius: 3,
+              marginBottom: 4,
+            }}
+            returnKeyType="search"
+          />
+          <TextInput
+            placeholder="City, State or Zip Code"
+            value="92009"
+            style={{
+              color: "#878685",
+              padding: 8,
+              borderWidth: 1,
+              borderColor: "#ddd",
+              borderStyle: "solid",
+              borderRadius: 3,
+            }}
+            returnKeyType="search"
+          />
+        </View>
+        <List
+          containerStyle={{
+            width: "100%"
+          }}>
+          {
+            list.map((item, i) => (
+              <ListItem
+                key={i}
+                title={item.title}
+                subtitle={`${item.address}, ${item.city}`}
+                style={{ borderBottomColor: "#000000" }}
+                titleStyle={{ fontSize: 16, color: "#585756" }}
+                subtitleStyle={{ fontSize: 14, fontWeight: "normal", color: "#878685" }}
+              />
+            ))
+          }
+        </List>
       </View>
     )
   }
